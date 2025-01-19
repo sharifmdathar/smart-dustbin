@@ -12,8 +12,12 @@ const App = () => {
       setUser(parsedUser);
       incrementPoints(parsedUser.username)
         .then((data) => {
-          if (data.success) parsedUser = data.user;
+          parsedUser = data.user;
           setUser(parsedUser);
+          window.localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(parsedUser),
+          );
         });
     }
   }, []);

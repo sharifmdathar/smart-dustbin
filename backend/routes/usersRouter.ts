@@ -34,12 +34,12 @@ usersRouter.put("/:username", async (req: Request, res: Response) => {
     const now = new Date();
     const diff = now.getTime() - lastUpdated.getTime();
     if (diff < 24 * 60 * 60 * 1000) {
-      return res.status(220).send({ success: false });
+      return res.status(220).send({ user: user });
     } else {
       user.points += 50;
       user.lastUpdated = now;
       user.save();
-      res.status(200).send({ success: true, user: user });
+      res.status(200).send({ user: user });
     }
   }
 });

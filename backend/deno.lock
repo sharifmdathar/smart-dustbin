@@ -1,24 +1,10 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@std/assert@1": "1.0.10",
-    "jsr:@std/internal@^1.0.5": "1.0.5",
-    "npm:cors@^2.8.5": "2.8.5",
+    "npm:cors@*": "2.8.5",
     "npm:express@*": "4.21.2",
-    "npm:express@^4.21.2": "4.21.2",
     "npm:hono@*": "4.6.17",
-    "npm:mongoose@^8.9.5": "8.9.5"
-  },
-  "jsr": {
-    "@std/assert@1.0.10": {
-      "integrity": "59b5cbac5bd55459a19045d95cc7c2ff787b4f8527c0dd195078ff6f9481fbb3",
-      "dependencies": [
-        "jsr:@std/internal"
-      ]
-    },
-    "@std/internal@1.0.5": {
-      "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
-    }
+    "npm:mongoose@*": "8.9.5"
   },
   "npm": {
     "@mongodb-js/saslprep@1.1.9": {
@@ -514,13 +500,5 @@
         "webidl-conversions"
       ]
     }
-  },
-  "workspace": {
-    "dependencies": [
-      "jsr:@std/assert@1",
-      "npm:cors@^2.8.5",
-      "npm:express@^4.21.2",
-      "npm:mongoose@^8.9.5"
-    ]
   }
 }
