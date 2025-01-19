@@ -7,18 +7,25 @@ import { MONGODB_URI } from "./utils/config.ts";
 
 const app = express();
 if (MONGODB_URI) {
-  mongoose.connect(MONGODB_URI);
+  mongoose.connect(MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error) =>
+      console.error("Error connecting to MongoDB:", error.message)
+    );
 } else {
   console.error("MONGODB_URI is not defined");
-  Deno.exit(1);
 }
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static("dist"));
+app.get("/", (_req: Request, res: Response) => {
+  res.sendFile(import.meta.dirname + "/dist/index.html");
+});
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
 app.use((_req: Request, res: Response) => {
-  res.send("Welcome to Smart Dustbin App");
+  res.send("<h1>Welcome to Smart Dustbin App</h1>");
 });
 
 export default app;
