@@ -2,7 +2,11 @@ import { useState } from "react";
 import Info from "./Info.tsx";
 import { loginUser } from "../services/userService";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  setUser: (user: any) => void;
+}
+
+const LoginForm = ({ setUser }: LoginFormProps) => {
   const [username, setUsername] = useState("username");
   const [password, setPassword] = useState("password");
   const [info, setInfo] = useState({ message: "", status: "" });
@@ -14,6 +18,12 @@ const LoginForm = () => {
       setInfo({ message: data.error, status: "error" });
     } else {
       setInfo({ message: `welcome back ${data.username}!`, status: "success" });
+      setUser(data);
+      setTimeout(() => {
+        setInfo({ message: "", status: "" });
+        window.location.reload();
+      }, 1000);
+      window.localStorage.setItem("loggedInUser", JSON.stringify(data));
     }
   };
 
