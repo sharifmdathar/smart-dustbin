@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response } from "npm:express";
 import usersRouter from "./routes/usersRouter.ts";
 import loginRouter from "./routes/loginRouter.ts";
-import mongoose from "mongoose";
-import cors from "cors";
+import mongoose from "npm:mongoose";
+import cors from "npm:cors";
 import { MONGODB_URI } from "./utils/config.ts";
 
 const app = express();

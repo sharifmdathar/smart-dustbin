@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response } from "npm:express";
 import User from "../models/user.ts";
 const loginRouter = express.Router();
 
