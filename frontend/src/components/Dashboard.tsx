@@ -1,4 +1,5 @@
 interface User {
+  fullName: string;
   username: string;
   points: number;
 }
@@ -11,7 +12,7 @@ const Dashboard = ({ user }: { user: User }) => {
 
   return (
     <>
-      <h1>{user.username} has {user.points} points</h1>
+      <h1>{user.fullName} has {user.points} points</h1>
       <button onClick={handleLogout}>log out</button>
     </>
   );

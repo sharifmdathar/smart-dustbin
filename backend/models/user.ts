@@ -1,9 +1,14 @@
-import { Schema, model } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const userSchema = new Schema({
+  fullName: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -11,7 +16,11 @@ const userSchema = new Schema({
   },
   points: {
     type: Number,
-    default: 0,
+    default: 50,
+  },
+  lastUpdated: {
+    type: Date,
+    default: Date.now,
   },
 });
 
@@ -20,6 +29,7 @@ userSchema.set("toJSON", {
     delete returnedObject._id;
     delete returnedObject.__v;
     delete returnedObject.password;
+    delete returnedObject.lastUpdated;
   },
 });
 
