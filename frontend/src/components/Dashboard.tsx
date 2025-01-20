@@ -11,10 +11,10 @@ const Dashboard = ({ user }: { user: User }) => {
   };
 
   return (
-    <>
+    <div className="dashboard">
       <h1>{user.fullName} has {user.points} points</h1>
       <button onClick={handleLogout}>log out</button>
-    </>
+    </div>
   );
 };
 export default Dashboard;

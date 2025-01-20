@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import Dashboard from "./components/Dashboard";
 import { incrementPoints } from "./services/userService";
+import Header from "./components/Header";
 
 const App = () => {
   const [user, setUser] = useState({ fullName: "", username: "", points: 0 });
@@ -22,8 +23,13 @@ const App = () => {
     }
   }, []);
 
-  return user.username === ""
-    ? <LoginForm setUser={setUser} />
-    : <Dashboard user={user} />;
+  return (
+    <>
+      <Header />
+      {user.username === ""
+        ? <LoginForm setUser={setUser} />
+        : <Dashboard user={user} />}
+    </>
+  );
 };
 export default App;

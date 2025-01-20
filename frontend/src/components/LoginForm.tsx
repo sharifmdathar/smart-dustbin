@@ -12,6 +12,11 @@ const LoginForm = ({ setUser }: LoginFormProps) => {
   const [fullName, setFullName] = useState("");
   const [info, setInfo] = useState({ message: "", status: "" });
   const [newAccount, setNewAccount] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPass = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -51,7 +56,7 @@ const LoginForm = ({ setUser }: LoginFormProps) => {
 
   return (
     <>
-      <form>
+      <form className="login-container">
         <Info info={info} />
         {newAccount && (
           <p>
@@ -63,30 +68,45 @@ const LoginForm = ({ setUser }: LoginFormProps) => {
             />
           </p>
         )}
-        <p>
+        <label>
           username{" "}
           <input
             type="text"
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-        </p>
+        </label>
         <p>
-          password{" "}
-          <input
-            type="password"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-          />
+          <label>
+            password{" "}
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+            />
+          </label>
         </p>
+        <label>
+          <input
+            type="checkbox"
+            checked={showPassword}
+            onChange={handleShowPass}
+          />{" "}
+          Show Password
+        </label>
         {!newAccount
           ? <button onClick={handleLogin}>login</button>
           : <button onClick={handleNewAccount}>create account</button>}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setNewAccount(!newAccount);
+          }}
+        >
+          {newAccount ? "cancel" : "create new account"}
+        </button>
       </form>
       <br />
-      <button onClick={() => setNewAccount(!newAccount)}>
-        {newAccount ? "cancel" : "create new account"}
-      </button>
     </>
   );
 };
